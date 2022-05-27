@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
+import { clearFilters, handleChange } from "../features/allJobs/allJobsSlice";
 import { FormRow, FormRowSelect } from ".";
 import Wrapper from "../assets/wrappers/SearchContainer";
 
@@ -8,10 +9,16 @@ const SearchContainer = () => {
   const { jobTypeOptions, statusOptions } = useSelector((store) => store.job);
   const dispatch = useDispatch();
 
-  const handleSearch = (e) => {};
+  const handleSearch = (e) => {
+    if (isLoading) return;
+    const name = e.target.name,
+      value = e.target.value;
+    dispatch(handleChange({ name, value }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(clearFilters());
   };
 
   return (
@@ -46,6 +53,7 @@ const SearchContainer = () => {
             list={sortOptions}
           />
           <button
+            type="submit"
             className="btn btn-block btn-danger"
             disabled={isLoading}
             onClick={handleSubmit}
