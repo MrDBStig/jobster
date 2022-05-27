@@ -74,7 +74,7 @@ const allJobsSlice = createSlice({
     },
     [showStats.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
-      state.stats = payload.stats;
+      state.stats = payload.defaultStats;
       state.monthlyApplications = payload.monthlyApplications;
     },
     [showStats.rejected]: (state, { payload }) => {
