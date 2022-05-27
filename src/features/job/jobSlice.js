@@ -62,10 +62,10 @@ const jobSlice = createSlice({
       state.isLoading = false;
       toast.error(payload);
     },
-    [deleteJob.fulfilled]: (state, { payload }) => {
+    [deleteJob.fulfilled]: (_, { payload }) => {
       toast.success(payload);
     },
-    [deleteJob.rejected]: (state, { payload }) => {
+    [deleteJob.rejected]: (_, { payload }) => {
       toast.error(payload);
     },
   },
