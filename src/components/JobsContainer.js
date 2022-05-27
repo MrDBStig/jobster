@@ -7,14 +7,23 @@ import Loading from "./Loading";
 import Wrapper from "../assets/wrappers/JobsContainer";
 
 const JobsContainer = () => {
-  const { jobs, isLoading, page, numOfPages, totalJobs } = useSelector(
-    (store) => store.allJobs
-  );
+  const {
+    jobs,
+    isLoading,
+    page,
+    numOfPages,
+    totalJobs,
+    search,
+    searchType,
+    searchStatus,
+    sort,
+  } = useSelector((store) => store.allJobs);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllJobs());
-  }, []);
+    // eslint-disable-next-line
+  }, [page, search, searchType, searchStatus, sort]);
 
   if (isLoading) {
     return (
