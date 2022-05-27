@@ -1,6 +1,7 @@
 import { FaLocationArrow, FaBriefcase, FaCalendarAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { deleteJob } from "../features/job/jobSlice";
 import moment from "moment";
 import JobInfo from "./JobInfo";
 import Wrapper from "../assets/wrappers/Job";
@@ -48,7 +49,7 @@ const Job = ({
               type="button"
               className="btn delete-btn"
               onClick={() => {
-                console.log("delete job");
+                dispatch(deleteJob(_id));
               }}
             >
               Delete
