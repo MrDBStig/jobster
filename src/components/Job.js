@@ -1,6 +1,7 @@
 import { FaLocationArrow, FaBriefcase, FaCalendarAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { deleteJob, setEditJob } from "../features/job/jobSlice";
 import moment from "moment";
 import JobInfo from "./JobInfo";
 import Wrapper from "../assets/wrappers/Job";
@@ -36,10 +37,19 @@ const Job = ({
         <footer>
           <div className="actions">
             <Link
-              to="/addJob"
+              to="/add-job"
               className="btn edit-btn"
               onClick={() => {
-                console.log("edit job");
+                dispatch(
+                  setEditJob({
+                    editJobId: _id,
+                    position,
+                    company,
+                    jobLocation,
+                    jobType,
+                    status,
+                  })
+                );
               }}
             >
               Edit
@@ -48,7 +58,7 @@ const Job = ({
               type="button"
               className="btn delete-btn"
               onClick={() => {
-                console.log("delete job");
+                dispatch(deleteJob(_id));
               }}
             >
               Delete
